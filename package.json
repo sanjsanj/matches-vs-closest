@@ -1,0 +1,19 @@
+{
+  "name": "matches-vs-closest",
+  "version": "1.0.0",
+  "description": "Comparing performance of two native browser methods",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanjsanj/matches-vs-closest.git"
+  },
+  "author": "sanjsanj@hotmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sanjsanj/matches-vs-closest/issues"
+  },
+  "homepage": "https://github.com/sanjsanj/matches-vs-closest#readme"
+}
