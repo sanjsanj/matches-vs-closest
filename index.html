@@ -12,29 +12,56 @@
     const elements = ["div", "p", "span", "a", "section", "article"]
     const strings = ["A string", "B string", "C string", "D string"]
 
-    let getRandomFrom = arr => (arr[Math.floor(Math.random() * arr.length)])
+    const getRandomFrom = arr => ( arr[Math.floor(Math.random() * arr.length)] )
 
-    let addNode = () => {
+    const addNode = () => {
       const node = document.createElement(getRandomFrom(elements));
       node.className = getRandomFrom(strings);
       node.innerText = getRandomFrom(strings);
       document.body.appendChild(node);
     }
 
-    const times = x => f => {
-      if (x > 0) {
-        f()
-        times(x - 1)(f)
+    const times = num => cb => {
+      if (num > 0) {
+        cb()
+        times(num - 1)(cb)
       }
     }
 
-    times(20)(addNode)
+    times(10000)(addNode)
 
     const wholeDom = document.getElementsByTagName("*");
-    
-    // call matches on DOM
 
-    // call closest on DOM
+    // .matches()
+    const executeMatches = () => {
+      const t0 = performance.now();
+      
+      for (node of wholeDom) {
+        node.matches(getRandomFrom(strings))
+      }
+      
+      const t1 = performance.now();
+      const diff = (t1 - t0).toFixed(4);
+      
+      console.log(`.matches() took ${diff} ms to traverse ${wholeDom.length} DOM nodes`);
+    }
+      
+    // .closest()
+    const executeClosest = () => {
+      const t0 = performance.now();
+      
+      for (node of wholeDom) {
+        node.closest(getRandomFrom(strings))
+      }
+      
+      const t1 = performance.now();
+      const diff = (t1 - t0).toFixed(4);
+      
+      console.log(`.closest() took ${diff} ms to traverse ${wholeDom.length} DOM nodes`);
+    }
+
+    times(10)(executeMatches);
+    times(10)(executeClosest);
   </script>
 </body>
 </html>
